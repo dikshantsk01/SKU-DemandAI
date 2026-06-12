@@ -26,6 +26,12 @@ By transitioning from a baseline XGBoost model to a hyperparameter-tuned archite
 ## 🚀 Deployment Status
 * The optimized AI model is compiled and exported as `SKU_Demand_Estimator_v1.pkl`.
 * Ready for integration into a web-based inference dashboard.
+* How to Run Locally
+Clone this repository: git clone https://github.com/YOUR_USERNAME/RetailDemand.git
+
+Install requirements: pip install -r requirements.txt
+
+Launch the dashboard: streamlit run app.py
 
 ---
 *Developed by Dikshant Khobragade*
