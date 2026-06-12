@@ -32,13 +32,20 @@ st.markdown("---")
 # 4. The Prediction Button & Logic
 if st.button("🚀 Predict Sales Demand"):
     
-    # Package the UI inputs into a DataFrame
-    # CRITICAL: These column names must exactly match the ones used during XGBoost training!
+    # We are injecting default baseline values (0) for the categorical columns 
+    # that were label-encoded during training, satisfying the model's 11-column requirement.
     input_data = pd.DataFrame({
-        'Item_MRP': [item_mrp],
-        'Item_Weight': [item_weight],
-        'Outlet_Establishment_Year': [outlet_year], 
-        'Item_Visibility': [item_visibility]
+        'Item_Identifier': [0],                 # Missing from UI
+        'Item_Weight': [item_weight],           # From UI
+        'Item_Fat_Content': [0],                # Missing from UI
+        'Item_Visibility': [item_visibility],   # From UI
+        'Item_Type': [0],                       # Missing from UI
+        'Item_MRP': [item_mrp],                 # From UI
+        'Outlet_Identifier': [0],               # Missing from UI
+        'Outlet_Establishment_Year': [outlet_year], # From UI
+        'Outlet_Size': [0],                     # Missing from UI
+        'Outlet_Location_Type': [0],            # Missing from UI
+        'Outlet_Type': [0]                      # Missing from UI
     })
     
     try:
@@ -50,6 +57,5 @@ if st.button("🚀 Predict Sales Demand"):
         st.balloons()
         
     except Exception as e:
-        # If there is a column name mismatch, this will catch the error
         st.error(f"Error making prediction: {e}")
         st.warning("Hint: Verify that the column names in your DataFrame match your Jupyter notebook training data exactly.")
